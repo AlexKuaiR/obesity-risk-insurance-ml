@@ -1,0 +1,9 @@
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Trained model weights and raw datasets are intentionally excluded (see README)
+*.pt
+*.pkl
+*.csv
