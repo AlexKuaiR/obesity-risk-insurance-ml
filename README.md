@@ -70,3 +70,7 @@ To reproduce results, download the relevant dataset(s) above and point the prepr
 ## Stack
 
 Python, pandas, scikit-learn, XGBoost, PyTorch, Optuna/TPE (hyperparameter optimization), Matplotlib.
+
+## Disclaimer
+
+This project was created for educational and actuarial modeling purposes as part of the Modeling the Future Challenge. It is not a medical diagnostic tool, clinical recommendation system, insurance underwriting system, or financial product. Model outputs and simulations are intended only to demonstrate machine learning and risk-modeling methods on public datasets, and should not be used to make real-world medical, insurance, or financial decisions.
