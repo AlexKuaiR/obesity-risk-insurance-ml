@@ -61,7 +61,7 @@ Models were tuned using Tree-structured Parzen Estimator (TPE) Bayesian optimiza
 
 This repository does not include the underlying datasets or trained model weights (to keep the repo lightweight and avoid redistributing third-party data). The project draws on publicly available data from:
 
-- [Kaggle: Obesity or CVD Risk dataset](https://www.kaggle.com/) (synthetic + raw UCI obesity data)
+- [UCI Machine Learning Repository: Estimation of Obesity Levels Based On Eating Habits and Physical Condition](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition) (also mirrored on Kaggle)
 - CDC Behavioral Risk Factor Surveillance System (BRFSS)
 - NHANES (National Health and Nutrition Examination Survey)
 
