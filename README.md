@@ -2,7 +2,7 @@
 
 A machine learning pipeline for predicting obesity risk classification, built for the **Modeling the Future Challenge (MTFC)**, a national actuarial modeling competition. The project frames obesity risk as an insurance underwriting problem: predicting an individual's weight-status category from lifestyle and biometric features, then using the trained models to simulate long-term risk trajectories for pricing and mitigation analysis.
 
-This was a 5-person team project. I was responsible for the full modeling and analysis codebase, which is what's contained in this repository.
+This was a 5-person team project. I was responsible for the full modeling and programming analysis, which is what's contained in this repository.
 
 ## Project context
 
