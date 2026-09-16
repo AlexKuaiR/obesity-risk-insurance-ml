@@ -54,7 +54,7 @@ Models were tuned using Tree-structured Parzen Estimator (TPE) Bayesian optimiza
 ![FT-Transformer classification report](results/fttransformer_classification_report.png)
 ![FT-Transformer ROC curve](results/fttransformer_roc_curve.png)
 
-**Monte Carlo risk simulation**
+**Monte Carlo and Markov Chain risk simulations**
 
 ![Markov chain diagram](results/markov.png)
 ![Obesity probability distribution](results/obesity_probabilities_distribution_MC.png)
