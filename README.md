@@ -27,7 +27,7 @@ Raw survey/biometric data is cleaned and feature-engineered, then passed through
 - **Obese individuals:** the Monte Carlo intervention reduced obesity probability by **36.14%** (95% CI 33.14-39.14%).
 - **Overweight individuals:** overweight probability fell **13.5%** (95% CI 9.8-17.19%), and obesity probability fell from 10.5% to 7.9% (24.8% decrease).
 - **Sensitivity analysis:** snacking between meals (CAEC) had the largest effect on overweight/obese classification; physical activity (FAF) and water intake (CH2O) had more gradual effects, and coordinated changes amplified the shifts.
-- **Long-term impact (100,000 hypothetical policyholders, 20 years):** obesity prevalence falls from 43.35% to 31.69% under the intervention-adjusted Markov chain, a 26.90% relative reduction. Estimated annual claims cost drops from about $67.9M to $52.9M, saving roughly $15.0M.
+- **Long-term impact (100,000 hypothetical policyholders, 20 years):** obesity prevalence falls from 43.35% to 31.69% under the intervention-adjusted Markov chain, a 26.90% relative reduction. Estimated annual claims cost drops from about $67.9M to $55.0M, saving roughly $12.9M.
 
 ## Methodology
 
@@ -106,14 +106,13 @@ Modeled for a hypothetical insurer with 100,000 policyholders representative of 
 | Year-20 scenario | Obese | Overweight | Annual claims expense |
 |---|---|---|---|
 | Baseline | 43,524 | 30,037 | $67,943,249 |
-| With interventions | 31,689 | 30,037 | $52,898,597 |
-| **Savings** | | | **$15,044,652** |
+| With interventions | 31,689 | 35,109 | $55,028,837 |
+| **Savings** | | | **$12,914,412** |
 
 Over the 20-year Markov simulation, the intervention-adjusted population also keeps roughly 6,000 more people in the normal-weight range (30,943 vs. 24,931) and cuts obesity prevalence from 43.35% to 31.69%. For scale, the baseline severity estimate for the current population is about $95.4M per year.
 
 ## Limitations
 
-- The savings figure holds the overweight count at the baseline value (30,037) in both scenarios. The intervention scenario actually ends with 35,109 overweight policyholders; recomputing with that count gives about $55.0M in expense and roughly $12.9M in savings (my recalculation, not from the paper). Either way the direction and rough size of the result hold.
 - Savings are gross: they do not net out discounts, cashback, coverage upgrades, or platform costs, so this is not a full pricing or profitability model.
 - The Monte Carlo interventions are model-predicted changes in class probability, not observed behavior change. Real adherence and causal effects were not measured.
 - Roughly 77% of the training data is synthetic (SMOTE), and the Markov transition matrix is assumed constant and is calibrated to NHANES aggregates, not individual trajectories.
