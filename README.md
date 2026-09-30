@@ -88,6 +88,49 @@ Models were tuned using Tree-structured Parzen Estimator (TPE) Bayesian optimiza
 ![Sensitivity analysis](results/sensitivity_analysis_weight_categories.png)
 ![Obesity type comparison](results/obesity_type_comparison.png)
 
+## Product Recommendations
+
+The models feed a concrete insurance product design, not just predictions:
+
+- **Personalized lifestyle plan (outcomes modification).** Each policyholder gets unit-level targets from the Monte Carlo optimizer. Obese: physical activity +0.15-0.78, daily calorie tracking (SCC = 1), snacking -0.15 to -0.33, water +0.15-0.63. Overweight: activity +0.15-0.61, calorie tracking, snacking -0.15 to -0.22, water +0.15-0.64. In survey terms this means, for example, moving from exercising 1-2 days a week to 2-4, or from under 1 L of water a day to 1-2 L.
+- **Tiered premium discounts** on a $500 base annual premium: 5% (baseline, on enrollment, $475), 10% (active engagement, $450), 15% (optimal health after 12 months of consistent results, $425).
+- **Cashback:** $20/month when combined wellness targets are met, plus a $150 annual bonus for optimal health performance.
+- **Coverage for obesity-related conditions** (diabetes, hypertension, cardiovascular disease, certain cancers): 70% standard, up to 80% for sustained improvement, up to 85% with an annual performance bonus.
+- **Implementation:** a required digital health platform for continuous monitoring, regular progress assessments, and quarterly reports to policyholders on discount status, rewards, and coverage.
+- **Population-level behavior change** (schools, parks, bike lanes, recreation centers) was recommended as complementary prevention, separate from the underwriting model.
+
+## Financial Impact
+
+Modeled for a hypothetical insurer with 100,000 policyholders representative of the US weight distribution, assuming 70% coverage of weight-related medical costs and excess annual costs of $1,816 per obese and $600 per overweight adult (CDC/NCHS-sourced figures cited in the paper).
+
+| Year-20 scenario | Obese | Overweight | Annual claims expense |
+|---|---|---|---|
+| Baseline | 43,524 | 30,037 | $67,943,249 |
+| With interventions | 31,689 | 30,037 | $52,898,597 |
+| **Savings** | | | **$15,044,652** |
+
+Over the 20-year Markov simulation, the intervention-adjusted population also keeps roughly 6,000 more people in the normal-weight range (30,943 vs. 24,931) and cuts obesity prevalence from 43.35% to 31.69%. For scale, the baseline severity estimate for the current population is about $95.4M per year.
+
+## Limitations
+
+- The savings figure holds the overweight count at the baseline value (30,037) in both scenarios. The intervention scenario actually ends with 35,109 overweight policyholders; recomputing with that count gives about $55.0M in expense and roughly $12.9M in savings (my recalculation, not from the paper). Either way the direction and rough size of the result hold.
+- Savings are gross: they do not net out discounts, cashback, coverage upgrades, or platform costs, so this is not a full pricing or profitability model.
+- The Monte Carlo interventions are model-predicted changes in class probability, not observed behavior change. Real adherence and causal effects were not measured.
+- Roughly 77% of the training data is synthetic (SMOTE), and the Markov transition matrix is assumed constant and is calibrated to NHANES aggregates, not individual trajectories.
+- This was a competition project. The insurance product was designed and simulated but never deployed or piloted.
+
+## End-to-End Scope
+
+| Stage | What was built |
+|---|---|
+| Problem framing | Obesity risk recast as an insurance underwriting and cost-mitigation problem |
+| Data | Cleaning, feature selection (dropped leakage-prone `Weight` and bias-prone `Gender`), NHANES calibration |
+| Modeling | Three classifiers benchmarked against a baseline, with Bayesian hyperparameter tuning |
+| Decision layer | Per-person Monte Carlo optimization that turns predictions into actionable recommendations |
+| Long-term projection | Markov chain projecting population impact over 20 years |
+| Product and business case | Tiered incentive and coverage design with a quantified expense comparison |
+| Communication | 30-page paper and this repository |
+
 ## Data
 
 This repository does not include the underlying datasets or trained model weights (to keep the repo lightweight and avoid redistributing third-party data). The project draws on publicly available data from:
