@@ -1,0 +1,13 @@
+numpy
+pandas
+scipy
+scikit-learn
+xgboost
+optuna
+matplotlib
+seaborn
+joblib
+torch
+tab-transformer-pytorch
+torchinfo
+torchviz

@@ -2,7 +2,7 @@
 
 A machine learning pipeline for predicting obesity risk classification, built for the **Modeling the Future Challenge (MTFC)**, a national actuarial modeling competition. The project frames obesity risk as an insurance underwriting problem: predicting an individual's weight-status category from lifestyle and biometric features, then using the trained models to simulate long-term risk trajectories for pricing and mitigation analysis.
 
-The work accompanies the team paper *The Obesity Epidemic: A Novel Analysis of Patient-Level Obesity and Machine Learning Risk Mitigation Optimization* (Team 20354, "Galaxy Munchkins", March 2025).
+The work accompanies the team paper *The Obesity Epidemic: A Novel Analysis of Patient-Level Obesity and Machine Learning Risk Mitigation Optimization* (Team 20354, "Galaxy Munchkins", March 2025). The full paper is in [`paper/Obesity_MTFC2025_paper.pdf`](paper/Obesity_MTFC2025_paper.pdf).
 
 This was a 5-person team project. I was responsible for the full modeling and programming analysis, which is what's contained in this repository.
 
@@ -43,16 +43,18 @@ Raw survey/biometric data is cleaned and feature-engineered, then passed through
 
 ## Notebooks
 
-| Notebook | Purpose |
-|---|---|
-| `notebooks/obesity-preprocessing.ipynb` | Data cleaning, feature engineering, and exploratory analysis |
-| `notebooks/LogisticRegression.ipynb` | Baseline logistic regression classifier |
-| `notebooks/XGBoost.ipynb` | XGBoost classifier |
-| `notebooks/XGBoost-labelencoding-and-Monte-Carlo.ipynb` | XGBoost variant with label-encoded categorical features, plus the per-sample Monte Carlo risk mitigation simulation |
-| `notebooks/xgb_oat_and_lhs.ipynb` | One-at-a-time and Latin hypercube sampling sensitivity analysis on the XGBoost model |
-| `notebooks/FTTransformer.ipynb` | Feature Tokenizer Transformer (FT-Transformer) deep learning classifier |
-| `notebooks/SAINT.ipynb` | SAINT (Self-Attention and Intersample Attention Transformer) classifier |
-| `notebooks/Markov_chain.ipynb` | 20-year Markov chain simulation of baseline vs. intervention-adjusted weight-class trajectories |
+Run them in order. Each one opens with a short summary, and the outputs come from the original 2025 run.
+
+| # | Notebook | Purpose |
+|---|---|---|
+| 01 | [`01_eda_and_preprocessing.ipynb`](notebooks/01_eda_and_preprocessing.ipynb) | Data cleaning, encoding, and exploratory analysis |
+| 02 | [`02_logistic_regression_baseline.ipynb`](notebooks/02_logistic_regression_baseline.ipynb) | Multinomial logistic regression baseline |
+| 03 | [`03_xgboost_initial_exploration.ipynb`](notebooks/03_xgboost_initial_exploration.ipynb) | First XGBoost pass with one-hot features (still includes `Weight`/`Gender`, so accuracy is inflated) |
+| 04 | [`04_xgboost_tuned_and_monte_carlo.ipynb`](notebooks/04_xgboost_tuned_and_monte_carlo.ipynb) | **Core notebook:** TPE-tuned XGBoost plus the per-sample Monte Carlo risk mitigation |
+| 05 | [`05_ft_transformer.ipynb`](notebooks/05_ft_transformer.ipynb) | FT-Transformer deep learning classifier |
+| 06 | [`06_saint.ipynb`](notebooks/06_saint.ipynb) | SAINT transformer (explored, not used in the paper) |
+| 07 | [`07_sensitivity_analysis.ipynb`](notebooks/07_sensitivity_analysis.ipynb) | One-at-a-time and Latin hypercube sensitivity analysis on the tuned XGBoost model |
+| 08 | [`08_markov_chain_projection.ipynb`](notebooks/08_markov_chain_projection.ipynb) | 20-year Markov chain projection and insurance cost impact |
 
 Models were tuned using Tree-structured Parzen Estimator (TPE) Bayesian optimization and evaluated by classification report, ROC-AUC (one-vs-rest), and confusion matrix across seven weight-status classes (Insufficient Weight, Normal Weight, Overweight Level I/II, Obesity Type I/II/III).
 
@@ -128,7 +130,7 @@ Over the 20-year Markov simulation, the intervention-adjusted population also ke
 | Decision layer | Per-person Monte Carlo optimization that turns predictions into actionable recommendations |
 | Long-term projection | Markov chain projecting population impact over 20 years |
 | Product and business case | Tiered incentive and coverage design with a quantified expense comparison |
-| Communication | 30-page paper and this repository |
+| Communication | [30-page paper](paper/Obesity_MTFC2025_paper.pdf) and this repository |
 
 ## Data
 
@@ -143,6 +145,10 @@ To reproduce results, download the relevant dataset(s) above and point the prepr
 ## Stack
 
 Python, pandas, scikit-learn, XGBoost, PyTorch, Optuna/TPE (hyperparameter optimization), Matplotlib.
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Disclaimer
 
